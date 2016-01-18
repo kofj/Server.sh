@@ -6,5 +6,8 @@
 #Anti SYN DDoS
 iptables -I INPUT -p tcp --syn -m limit --limit 1/s -j ACCEPT
 iptables -I FORWARD -p tcp --syn -m limit --limit 1/s -j ACCEPT
+
+#Anti Port scanning
+iptables -A FORWARD -p tcp --tcp-flags SYN,ACK,FIN,RST RST -m limit --limit 1/s -j ACCEPT
 ```
 
